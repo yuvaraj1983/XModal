@@ -5,7 +5,7 @@ import { useState } from 'react';
 import Modal from "react-modal";
 
 import styles from "./styles.css"
-Modal.setAppElement("#root");
+// Modal.setAppElement("#root");
 
 
 function App() {
@@ -39,6 +39,13 @@ function App() {
     setIsOpen(false);
   }
 
+  // checks if email is valid
+function isEmail(email) {
+  const regx = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
+  return regx.test(email);
+}
+
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(formData);
@@ -46,6 +53,11 @@ function App() {
     const currentDate = new Date();
     console.log(formdob);
     console.log(currentDate);
+    // const invalidEmail = !isEmail(formData.email);
+    // if(invalidEmail) {
+    //   alert('Invalid email. Please check your email address');
+    //   return;
+    // }
     if(formData.phonenumber && formData.phonenumber.length!==10) {
       alert('Invalid phone number. Please enter a 10-digit phone number');
       return;
