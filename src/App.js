@@ -46,7 +46,7 @@ function App() {
     const currentDate = new Date();
     console.log(formdob);
     console.log(currentDate);
-    if(formData.phonenumber && formData.phonenumber.length<10) {
+    if(formData.phonenumber && formData.phonenumber.length!==10) {
       alert('Invalid phone number. Please enter a 10-digit phone number');
       return;
     }
@@ -90,16 +90,16 @@ contentLabel="Example Modal"
       <h2 style={{textAlign:'center'}}>Fill Details</h2>
         <div style={{display:'flex', flexDirection:'column', alignItems:'center', justifyContent:'center'}}>
           <label >Username:</label> 
-          <input type='text' name='username' value={formData.username} required style={{width:'100%'}} 
+          <input type='text' id='username' name='username' value={formData.username} required style={{width:'100%'}} 
           onChange={handleChange}
           />
           <label>Email Address:</label>
-          <input type='email' name='email' value={formData.email}  required style={{width:'100%'}}  onChange={handleChange}/>
+          <input type='email' id='email' name='email' value={formData.email}  required style={{width:'100%'}}  onChange={handleChange}/>
           <label>Phone Number:</label>
           <input type='number' name='phonenumber' value={formData.phonenumber}  required style={{width:'100%'}}  onChange={handleChange}/>
           <label>Date of Birth:</label>
-          <input type='date' name='dob' value={formData.dob}  required style={{width:'100%'}}  onChange={handleChange}/>
-          <Button type='submit' sx={{margin:'10px'}} variant='contained'>Submit</Button>
+          <input type='date' id='dob' name='dob' value={formData.dob}  required style={{width:'100%'}}  onChange={handleChange}/>
+          <Button className='submit-button' type='submit' sx={{margin:'10px'}} variant='contained'>Submit</Button>
         </div>
       </form>
     </Modal>
