@@ -72,12 +72,12 @@ function App() {
   return (
     <>
    
-    <div className="App">
+    <div className="modal">
      <h1>User Details Modal</h1>
      <Button variant='contained' onClick={openModal}>Open Form</Button>
-    
-    </div>
+    <div className="modal-content">
     <Modal
+    
 style={customStyles}
 isOpen={modalIsOpen}
 
@@ -103,6 +103,9 @@ contentLabel="Example Modal"
         </div>
       </form>
     </Modal>
+    </div>
+    </div>
+   
     </>
   );
 }
