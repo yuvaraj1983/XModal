@@ -14,7 +14,7 @@ function App() {
   const [formData, setFormData] = useState({
     username: '',
     email: '',
-    phonenumber:'',
+    phone:'',
     dob:''
   })
   const customStyles ={
@@ -58,7 +58,7 @@ function isEmail(email) {
     //   alert('Invalid email. Please check your email address');
     //   return;
     // }
-    if(formData.phonenumber && formData.phonenumber.length!==10) {
+    if(formData.phone && formData.phone.length!==10) {
       alert('Invalid phone number. Please enter a 10-digit phone number');
       return;
     }
@@ -70,7 +70,7 @@ function isEmail(email) {
     setFormData({
       username: '',
       email: '',
-      phonenumber:'',
+      phone:'',
       dob:''
     })
 
@@ -105,7 +105,8 @@ function isEmail(email) {
                 <label>Email Address:</label>
                 <input type='email' id='email' name='email' value={formData.email}  required style={{width:'100%'}}  onChange={handleChange}/>
                 <label>Phone Number:</label>
-                <input type='number' id='phone' name='phone' value={formData.phonenumber}  required style={{width:'100%'}}  onChange={handleChange}/>
+                <input type='number' id='phone' name='phone' value={formData.phone} 
+                 required style={{width:'100%'}}  onChange={handleChange}/>
                 <label>Date of Birth:</label>
                 <input type='date' id='dob' name='dob' value={formData.dob}  required style={{width:'100%'}}  onChange={handleChange}/>
                 <button className='submit-button' type='submit' sx={{margin:'10px'}} >Submit</button>
