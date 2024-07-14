@@ -1,13 +1,13 @@
-form input {
-    height: 30px;
-    border-radius: 5px solid black;
-
-}
-
-form label {
-    height: 30px;
- 
-  
+.modal-top {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }
 
 .submit-button {
@@ -17,4 +17,37 @@ form label {
     border: 0px;
     padding: 10px;
     margin: 5px;
+}
+
+
+
+.modal-open {
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    width: 50%;
+    max-width: 600px;
+    height: auto;
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+}
+
+input[type='text'],
+ input[type='email'],
+ input[type='tel'],
+ input[type='date'] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
 }

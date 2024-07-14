@@ -1,8 +1,8 @@
 import logo from './logo.svg';
 import './App.css';
 import { Button } from "@mui/material"
-import { useState } from 'react';
-import Modal from "react-modal";
+import { useEffect, useRef, useState } from 'react';
+
 
 import styles from "./styles.css"
 // Modal.setAppElement("#root");
@@ -10,33 +10,31 @@ import styles from "./styles.css"
 
 function App() {
 
-  const [modalIsOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+  const modalRef = useRef();
+  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
+  const [dob, setDob] = useState('');
+  const [phone, setPhone] = useState('');
+  const [error, setError] = useState(null);
+  const [formError, setFormError] = useState(false);
+
   const [formData, setFormData] = useState({
     username: '',
     email: '',
     phone:'',
     dob:''
   })
-  const customStyles ={
-    content: {
-     width: '40%',
-     height:"55%",
-      top: '50%',
-      left: '50%',
-      right: 'auto',
-      bottom: 'auto',
-      marginRight: '-50%',
-      transform: 'translate(-50%, -50%)',
-      backgroundColor: '#EFEFEF',
-        borderRadius: '15px'
-    }}
+ 
 
   function openModal() {
     setIsOpen(true);
+    document.body.classList.add('modal-open')
   }
 
   function closeModal() {
     setIsOpen(false);
+    document.body.classList.remove("modal-open");
   }
 
   // checks if email is valid
@@ -49,17 +47,23 @@ function isEmail(email) {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(formData);
-    const formdob = new Date(formData.dob);
+    const formdob = new Date(dob);
     const currentDate = new Date();
     console.log(formdob);
     console.log(currentDate);
-    const invalidEmail = !isEmail(formData.email);
-    console.log("invalidEmail", invalidEmail)
-    if(invalidEmail) {
-      alert('Invalid email. Please check your email address');
+    // const invalidEmail = !isEmail(formData.email);
+    // console.log("invalidEmail", invalidEmail)
+    if(username.trim() === '') {
+      setFormError(true);
       return;
     }
-    if(formData.phone && formData.phone.length!==10) {
+    if (!email.includes("@")) {
+      setError(
+        `Please include an '@' in the email address. ${email} is missing an '@'.`
+      );
+      return;
+    }
+    if(phone && phone.length!==10) {
       alert('Invalid phone number. Please enter a 10-digit phone number');
       return;
     }
@@ -68,12 +72,12 @@ function isEmail(email) {
       return;
     }
 
-    setFormData({
-      username: '',
-      email: '',
-      phone:'',
-      dob:''
-    })
+    setUsername("");
+    setEmail("");
+    setDob("");
+    setPhone("");
+    setError(null);
+    setIsOpen(false);
 
   }
 
@@ -82,39 +86,54 @@ function isEmail(email) {
     setFormData((prevValue) => ({ ...prevValue, [name]: e.target.value}))
   }
 
+  useEffect(() => {
+    const handleOutsideClick = (e) => {
+      if(modalRef.current && !modalRef.current.contains(e.target)) {
+          closeModal();
+      }
+    }
+
+    document.addEventListener("mousedown", handleOutsideClick);
+
+    return () => {
+      document.removeEventListener("mousedown", handleOutsideClick)
+    }
+  })
+
   return (
 
    
     <div className="modal">
      <h1>User Details Modal</h1>
      <button style={{backgroundColor:"blue", color:'white', borderRadius:'5px', padding:'10px', border:'0px'}} onClick={openModal}>Open Form</button>
-          <div className="modal-content">
-          <Modal
-          style={customStyles}
-          isOpen={modalIsOpen}
-          onRequestClose={closeModal}
-          contentLabel="Example Modal"
-          >
+        
+        { isOpen && 
+          <div className="modal modal-content" ref={modalRef}>
+          <h2 style={{textAlign:'center'}}>Fill Details</h2>
           
-            <form >
-            <h2 style={{textAlign:'center'}}>Fill Details</h2>
-              <div style={{display:'flex', flexDirection:'column', alignItems:'center', justifyContent:'center'}}>
-                <label >Username:</label> 
-                <input type='text' id='username' name='username' value={formData.username} required style={{width:'100%'}} 
-                onChange={handleChange}
+            <form onSubmit={handleSubmit}>
+          
+              <div >
+                <label htmlFor='username' >Username:</label> 
+                <input type='text' id='username' name='username' value={username} required 
+                onChange={(e) => setUsername(e.target.value)}
                 />
-                <label>Email Address:</label>
-                <input type='text' id='email' name='email' value={formData.email}  style={{width:'100%'}}  onChange={handleChange}/>
-                <label>Phone Number:</label>
-                <input type='number' id='phone' name='phone' value={formData.phone} 
-                 style={{width:'100%'}}  onChange={handleChange}/>
+                <label htmlFor='email'>Email Address:</label>
+                <input type='email' id='email' name='email' value={email} onChange={(e) => setEmail(e.target.value)}/>
+                {error && error.includes("email") && 
+                (<p>{error}</p>)
+                }
+                <label htmlFor='phone'>Phone Number:</label>
+                <input type='tel' id='phone' name='phone' value={phone} 
+                  onChange={(e) => setPhone(e.target.value)} />
                 <label>Date of Birth:</label>
-                <input type='date' id='dob' name='dob' value={formData.dob}  style={{width:'100%'}}  onChange={handleChange}/>
-                <button className='submit-button' onClick={handleSubmit} type='button' sx={{margin:'10px'}} >Submit</button>
+                <input type='date' id='dob' name='dob' value={dob}  onChange={(e) => setDob(e.target.value)}/>
+                <button className='submit-button' onClick={handleSubmit} type='submit' >Submit</button>
               </div>
             </form>
-          </Modal>
+         
           </div>
+        }
     </div>
    
    
