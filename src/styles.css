@@ -1,4 +1,4 @@
-.modal {
+.modal-top {
     position: fixed;
     top: 0;
     left: 0;
@@ -9,6 +9,20 @@
     align-items: center;
     flex-direction: column;
 }
+
+.open-form-button {
+    background-color: #008cba;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 8px;
+  }
 
 .submit-button {
     background-color: blue;
