@@ -103,7 +103,7 @@ function isEmail(email) {
   return (
 
    
-    <div className="modal-top">
+    <div className="modal">
      <h1>User Details Modal</h1>
      <button style={{backgroundColor:"blue", color:'white', borderRadius:'5px', padding:'10px', border:'0px'}} onClick={openModal}>Open Form</button>
         
