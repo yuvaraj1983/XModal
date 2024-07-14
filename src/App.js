@@ -96,7 +96,7 @@ function isEmail(email) {
           contentLabel="Example Modal"
           >
           
-            <form onSubmit={handleSubmit}>
+            <form >
             <h2 style={{textAlign:'center'}}>Fill Details</h2>
               <div style={{display:'flex', flexDirection:'column', alignItems:'center', justifyContent:'center'}}>
                 <label >Username:</label> 
@@ -110,7 +110,7 @@ function isEmail(email) {
                  style={{width:'100%'}}  onChange={handleChange}/>
                 <label>Date of Birth:</label>
                 <input type='date' id='dob' name='dob' value={formData.dob}  style={{width:'100%'}}  onChange={handleChange}/>
-                <button className='submit-button' type='submit' sx={{margin:'10px'}} >Submit</button>
+                <button className='submit-button' onClick={handleSubmit} type='button' sx={{margin:'10px'}} >Submit</button>
               </div>
             </form>
           </Modal>
