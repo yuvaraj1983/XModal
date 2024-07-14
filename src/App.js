@@ -41,7 +41,7 @@ function App() {
 
   // checks if email is valid
 function isEmail(email) {
-  const regx = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  const regx = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
   return regx.test(email);
 }
@@ -53,11 +53,12 @@ function isEmail(email) {
     const currentDate = new Date();
     console.log(formdob);
     console.log(currentDate);
-    // const invalidEmail = !isEmail(formData.email);
-    // if(invalidEmail) {
-    //   alert('Invalid email. Please check your email address');
-    //   return;
-    // }
+    const invalidEmail = !isEmail(formData.email);
+    console.log("invalidEmail", invalidEmail)
+    if(invalidEmail) {
+      alert('Invalid email. Please check your email address');
+      return;
+    }
     if(formData.phone && formData.phone.length!==10) {
       alert('Invalid phone number. Please enter a 10-digit phone number');
       return;
@@ -103,7 +104,7 @@ function isEmail(email) {
                 onChange={handleChange}
                 />
                 <label>Email Address:</label>
-                <input type='email' id='email' name='email' value={formData.email}  required style={{width:'100%'}}  onChange={handleChange}/>
+                <input type='text' id='email' name='email' value={formData.email}  required style={{width:'100%'}}  onChange={handleChange}/>
                 <label>Phone Number:</label>
                 <input type='number' id='phone' name='phone' value={formData.phone} 
                  required style={{width:'100%'}}  onChange={handleChange}/>
