@@ -104,7 +104,7 @@ function isEmail(email) {
                 onChange={handleChange}
                 />
                 <label>Email Address:</label>
-                <input type='text' id='email' name='email' value={formData.email}  required style={{width:'100%'}}  onChange={handleChange}/>
+                <input type='text' id='email' name='email' value={formData.email}  style={{width:'100%'}}  onChange={handleChange}/>
                 <label>Phone Number:</label>
                 <input type='number' id='phone' name='phone' value={formData.phone} 
                  required style={{width:'100%'}}  onChange={handleChange}/>
