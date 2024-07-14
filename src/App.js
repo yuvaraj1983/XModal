@@ -82,43 +82,40 @@ function isEmail(email) {
   }
 
   return (
-    <>
+
    
     <div className="modal">
      <h1>User Details Modal</h1>
-     <Button variant='contained' onClick={openModal}>Open Form</Button>
-    <div className="modal-content">
-    <Modal
-    
-style={customStyles}
-isOpen={modalIsOpen}
-
-onRequestClose={closeModal}
-
-contentLabel="Example Modal"
-    >
-    
-      <form onSubmit={handleSubmit}>
-      <h2 style={{textAlign:'center'}}>Fill Details</h2>
-        <div style={{display:'flex', flexDirection:'column', alignItems:'center', justifyContent:'center'}}>
-          <label >Username:</label> 
-          <input type='text' id='username' name='username' value={formData.username} required style={{width:'100%'}} 
-          onChange={handleChange}
-          />
-          <label>Email Address:</label>
-          <input type='email' id='email' name='email' value={formData.email}  required style={{width:'100%'}}  onChange={handleChange}/>
-          <label>Phone Number:</label>
-          <input type='number' name='phonenumber' value={formData.phonenumber}  required style={{width:'100%'}}  onChange={handleChange}/>
-          <label>Date of Birth:</label>
-          <input type='date' id='dob' name='dob' value={formData.dob}  required style={{width:'100%'}}  onChange={handleChange}/>
-          <Button className='submit-button' type='submit' sx={{margin:'10px'}} variant='contained'>Submit</Button>
-        </div>
-      </form>
-    </Modal>
-    </div>
+     <button style={{backgroundColor:"blue", color:'white', borderRadius:'5px', padding:'10px', border:'0px'}} onClick={openModal}>Open Form</button>
+          <div className="modal-content">
+          <Modal
+          style={customStyles}
+          isOpen={modalIsOpen}
+          onRequestClose={closeModal}
+          contentLabel="Example Modal"
+          >
+          
+            <form onSubmit={handleSubmit}>
+            <h2 style={{textAlign:'center'}}>Fill Details</h2>
+              <div style={{display:'flex', flexDirection:'column', alignItems:'center', justifyContent:'center'}}>
+                <label >Username:</label> 
+                <input type='text' id='username' name='username' value={formData.username} required style={{width:'100%'}} 
+                onChange={handleChange}
+                />
+                <label>Email Address:</label>
+                <input type='email' id='email' name='email' value={formData.email}  required style={{width:'100%'}}  onChange={handleChange}/>
+                <label>Phone Number:</label>
+                <input type='number' id='phone' name='phone' value={formData.phonenumber}  required style={{width:'100%'}}  onChange={handleChange}/>
+                <label>Date of Birth:</label>
+                <input type='date' id='dob' name='dob' value={formData.dob}  required style={{width:'100%'}}  onChange={handleChange}/>
+                <button className='submit-button' type='submit' sx={{margin:'10px'}} >Submit</button>
+              </div>
+            </form>
+          </Modal>
+          </div>
     </div>
    
-    </>
+   
   );
 }
 
