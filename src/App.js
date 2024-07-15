@@ -103,12 +103,12 @@ function isEmail(email) {
   return (
 
    
-    <div className="modal-top">
+    <div className="modal-top" ref={modalRef}>
      <h1>User Details Modal</h1>
      <button className='open-form-button' onClick={openModal}>Open Form</button>
         
         { isOpen && 
-          <div className="modal modal-content" ref={modalRef}>
+          <div className="modal modal-content" >
           <h2 style={{textAlign:'center'}}>Fill Details</h2>
           
             <form onSubmit={handleSubmit}>

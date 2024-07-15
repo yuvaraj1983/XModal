@@ -2,12 +2,15 @@
     position: fixed;
     top: 0;
     left: 0;
-    width: 100%;
+    width: 70%;
     height: auto;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    border: 2px solid black;
+    text-align: center;
+    margin: 100px;
 }
 
 .open-form-button {
